@@ -1,0 +1,24 @@
+{% extends "learning_logs/base.html" %} <!-- inherit base.html -->
+
+{% block header %}
+	<h1>Topics</h1>
+{% endblock header %}
+
+{% block content %}
+<!-- use <h3> to make them a little bigger -->
+	
+		<ul>
+			{% for topic in topics %} <!-- for loop in template tags-->
+				<li> 
+				<h3>
+					<a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+				</h3>
+				</li> <!-- do something  ( use template variable)-->
+			{% empty %}
+				<li>No topics have been added yet.</li>
+			{% endfor %}				<!-- end tag to end loop-->
+		</ul>
+		
+		<h3><a href = "{% url 'learning_logs:new_topic' %}">Add a new topic:</a></h3>
+		
+{% endblock content %}

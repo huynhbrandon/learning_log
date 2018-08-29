@@ -1,0 +1,30 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}	<!-- load bootstrap3 template tags -->
+<!-- template in one app can extend to another -->
+
+{% block header %}
+	<h2>Log in to your account.</h2>
+{% endblock header %}
+
+
+{% block content %}
+	
+	<form method ="post" action = "{% url 'users:login' %}" class = "form">
+	<!-- action set to do the users url which calls login fx that sends a 
+		form to the template -->
+	{% csrf_token %}
+	{% bootstrap_form form %} <!-- inserts bs style rules into individual elements
+								of the form as its rendered-->
+	
+	{% buttons %}
+	<button name = "submit" class = "btn btn-primary">log in</button>
+	{% endbuttons %}
+	<input type ="hidden" name = "next" value = "{% url 'learning_logs:topics' %}" />
+	<!-- value tells django where to redirect user after signing in -->
+	</form>
+	<!-- value tells django where to redirect the user after they've logged in-->
+	
+	
+	
+{% endblock content %}
+
