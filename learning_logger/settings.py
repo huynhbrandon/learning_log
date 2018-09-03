@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'kf5j6028g%eo-o6q1#v6v))az$wkxgi7&y___i52^wqqi9a%f4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'learning_logger.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'learning_logger/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -144,18 +144,18 @@ if cwd == '/app' or cwd[:4] == '/tmp': #only do these blocks if in heroku
 		'default': dj_database_url.config(default = 'postgres://localhost')
 	}
 
-#Honor the 'X-Forwarded-Proto' header for request.is_secure().
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+	#Honor the 'X-Forwarded-Proto' header for request.is_secure().
+	SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-#Allow only Heroku to host the project
-ALLOWED_HOSTS = ['captains-logger.herokuapp.com']
+	#Allow only Heroku to host the project
+	ALLOWED_HOSTS = ['captains-logger.herokuapp.com']
 
-DEBUG = False
+	DEBUG = False
 
-# Static asset configuration 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'static'),
-)
+	# Static asset configuration 
+	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+	STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+	STATIC_URL = '/static/'
+	STATICFILES_DIRS = (
+		os.path.join(BASE_DIR, 'static'),
+	)
